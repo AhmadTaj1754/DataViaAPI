@@ -1,6 +1,6 @@
 
-Example of how to use an API to produce and consume JSON and use to update a
-database.
+Example of how to use an API to produce and consume JSON. Then use data to update a
+database using Python to connect to the database.
 
 
 
