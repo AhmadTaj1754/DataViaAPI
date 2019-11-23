@@ -9,12 +9,10 @@ import mysql.connector
 #Obtain "Chained Consumer Price Index for All Urban Consumers: All Items in U.S.
 #City Average " data from U.S. Bureau of Labor Statistics via public API, in
 #the form of JSON, and write to CSV file
-
-
 headers = {'Content-type': 'application/json'}
 data = json.dumps({"seriesid": ['SUUR0000SA0'],"startyear":"2000", "endyear":"2019", "registrationkey":"KEY"})
-p = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
-json_data = json.loads(p.text)
+reqst = requests.post('https://api.bls.gov/publicAPI/v2/timeseries/data/', data=data, headers=headers)
+json_data = json.loads(reqst.text)
 # print(json_data)
 with open('file.cvs', 'w') as csvfile:
     datawriter = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
@@ -33,12 +31,10 @@ with open('file.cvs', 'w') as csvfile:
             for footnote in item['footnotes']:
                 if footnote:
                     footnotes = footnotes + footnote['text']
-            if 'M01' <= period <= 'M12':
-                datawriter.writerow([seriesId,seriesName,year,period,periodName, value,footnotes[0:2]])
+            datawriter.writerow([seriesId,seriesName,year,period,periodName, value,footnotes[0:2]])
 
-#connect to MySQL databse and insert values obtianed with BLS API into
-#precreated BLS databse table
-
+#connect to MySQL database and insert values obtianed with BLS API into
+#pre-created BLS database table
 mydb = mysql.connector.connect(
   host="IP Address",
   user="username",
