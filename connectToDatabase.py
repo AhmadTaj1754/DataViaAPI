@@ -39,7 +39,7 @@ mydb = mysql.connector.connect(
   buffered=True,
 )
 
-#Insert data into database utilizing csv file 
+#Insert data into database utilizing csv file
 mycursor = mydb.cursor()
 with open('file.csv') as csvfile:
     reader = csv.reader(csvfile)
