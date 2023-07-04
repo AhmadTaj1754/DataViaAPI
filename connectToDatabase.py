@@ -44,7 +44,9 @@ mycursor = mydb.cursor()
 with open('file.csv') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
-        sqlstatement="INSERT INTO Chained_ConsumerPrice_US_City_Average(SeriesID,SeriesName, year,period, PeriodName, DataPoint, Footnotes) Values({0},{1},{2},{3},{4},{5},{6})".format(repr(row[0]),repr(row[1]),repr(row[2]),repr(row[3]),repr(row[4]),repr(row[5]),repr(row[6]))
+        sqlstatement="INSERT INTO Chained_ConsumerPrice_US_City_Average(SeriesID,SeriesName, year,period, PeriodName, DataPoint, Footnotes) 
+            Values({0},{1},{2},{3},{4},{5},{6})".format(repr(row[0]),repr(row[1]),repr(row[2]),repr(row[3]),repr(row[4]),
+            repr(row[5]),repr(row[6]))
         mycursor.execute(sqlstatement)
 mydb.commit()
 
